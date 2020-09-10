@@ -69,6 +69,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
               o1.start();
               sleep(1500);
               o1.stop();
+              console.log("stopping")
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
