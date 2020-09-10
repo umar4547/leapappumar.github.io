@@ -1,5 +1,3 @@
-
-
 var audio = new maximJs.maxiAudio();
 audio.init();
 var myOsc = new maximJs.maxiOsc();
@@ -38,7 +36,6 @@ controller.connect();
 window.onload = function() { //loads the audio context
   var context = new AudioContext();
 
-
   // Setup all nodes
 }
 var sequencer = [
@@ -61,7 +58,8 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
         switch (gesture.type){
           case "circle":
               console.log("Circle Gesture");
-              audio.context.resume();
+              //audio.context.resume();
+              //play();
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
@@ -162,22 +160,30 @@ function mapDist(num, in_min, in_max, out_min, out_max) {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-audio.play = function () {
-  console.log("circle function from");
-  
-    //notice that we feed in a value of 1. to create an envelope shape we can apply later.
-    myAmpOut = ampEnv.adsr(1., ampEnv.trigger);
+function play ()
+{
 
-    myFiltOut = filtEnv.adsr(1., filtEnv.trigger);
-
-
-    frequency = sequencer[0][handMap];
-    myOscOutput = myFilt.lopass(myOsc.saw(frequency), myFiltOut);
-    this.output = myOscOutput * myAmpOut;
-
+  console.log("my play function");
+  var context1 = new AudioContext()
+  var o1 = context1.createOscillator()
+  o1.type="sine";
+  o1.frequency=1000;
+  o1.connect(context.destination);
+  o1.start();
 }
 
+audio.play = function () {
+  // console.log("circle function from");
+  
+  //   //notice that we feed in a value of 1. to create an envelope shape we can apply later.
+  //   myAmpOut = ampEnv.adsr(1., ampEnv.trigger);
+
+  //   myFiltOut = filtEnv.adsr(1., filtEnv.trigger);
 
 
+  //   frequency = sequencer[0][handMap];
+  //   myOscOutput = myFilt.lopass(myOsc.saw(frequency), myFiltOut);
+  //   this.output = myOscOutput * myAmpOut;
 
+}
 
