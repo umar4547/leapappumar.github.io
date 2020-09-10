@@ -163,6 +163,7 @@ function mapDist(num, in_min, in_max, out_min, out_max) {
 }
 
 audio.play = function () {
+  console.log("circle function from");
   
     //notice that we feed in a value of 1. to create an envelope shape we can apply later.
     myAmpOut = ampEnv.adsr(1., ampEnv.trigger);
