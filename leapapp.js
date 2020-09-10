@@ -67,9 +67,11 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
               o1.frequency.value=1000;
               o1.connect(context1.destination);
               o1.start();
-              sleep(1500);
-              o1.stop();
-              console.log("stopping")
+              setTimeout(function() {
+                
+                o1.stop();
+                console.log("sound stopped");
+              }, 1000);
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
