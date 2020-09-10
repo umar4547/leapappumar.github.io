@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head >
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <title>
+        Synthesizer
+    </title>
+    <script src="https://www.doc.gold.ac.uk/~mus02mg/_maxiLib.js"></script> 
+ 	<script type="text/javascript" src="lib/osc-browser.min.js"></script>
+ 	<link rel="stylesheet" href="styles.css">  
+	<script src="leapjs-master/leap-0.6.4.min.js"></script>   
+       <script type="text/javascript" src= "leapapp copy.js"></script>
+       <!-- <script type="text/javascript" src= "leapapp.js"></script> -->
+
+</head>
+
+<body onload="foo()" style="background-color:black">
+
+    <h1 style="color:white; font-family:helvetica;"> Leap Synthesizer </h1> 
+
+
+<button id="btnOpen">Open</button>
+<button id="btnClose">Close</button>
+
+
+    <canvas id="myCanvas" width="1000" height="300"></canvas>
+
+      <script type="text/javascript">
+         var canvas = document.getElementById("myCanvas"); // This gets the window in the browser
+        var context = canvas.getContext("2d"); // x,y
+      </script>
+</body>
+
+ 
+</html>
