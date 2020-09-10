@@ -9,4 +9,6 @@ o.type="sine";
 o.frequency=440;
 o.connect(context.destination);
 o.start();
-}
+setTimeout(function() {
+  // Whatever you want to do after the wait
+}, millisecondsToWait);}

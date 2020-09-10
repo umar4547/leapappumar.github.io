@@ -7,7 +7,7 @@ var myOscOutput, myAmpOut, myFiltOut;
 var ampEnv = new maximJs.maxiEnv();
 var filtEnv = new maximJs.maxiEnv();
 var myFilt = new maximJs.maxiFilter();
-
+var context1;
 var handMap = 0;
 var handDist; // global hand distance (original range 190 - 10,000)
 var noteEvent; // bool for detecting change of state (note on/off)
@@ -26,7 +26,7 @@ ampEnv.setAttack(100);
 ampEnv.setDecay(1); // Needs to be at least 1
 ampEnv.setSustain(1.0);
 ampEnv.setRelease(5000);
-
+var o1;
 //---------------- SYNTHESIS -----------------
 
 var controller = new Leap.Controller();
@@ -61,12 +61,14 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
               console.log("Circle Gesture");
               //audio.context.resume();
               console.log("my play function");
-              var context1 = new AudioContext()
-              var o1 = context1.createOscillator()
+              context1 = new AudioContext()
+              o1 = context1.createOscillator()
               o1.type="sine";
-              o1.frequency=1000;
+              o1.frequency.value=1000;
               o1.connect(context1.destination);
               o1.start();
+              sleep(1500);
+              o1.stop();
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
