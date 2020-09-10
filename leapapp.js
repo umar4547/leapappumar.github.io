@@ -49,8 +49,8 @@ var sequencer = [
 controller.on('connect', onConnect);
 function onConnect()
   {
-    console.log("Connect event umffar");
-  }
+    console.log("Connect event umffar ");
+}
 
 var btnOpen = document.getElementById("btnOpen");
 var btnClose = document.getElementById("btnClose");
@@ -61,9 +61,6 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
         switch (gesture.type){
           case "circle":
               console.log("Circle Gesture");
-              circlegesturehandler();
-              audio.context.resume();
-
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
@@ -111,6 +108,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
         //console.log(handMap);
 
         // var direction = hand.direction;
+        audio.context.resume();
         btnOpen;enableGestures: true    
 
         //console.log("Note On");
@@ -147,11 +145,6 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
 
 });
 
-function circlegesturehandler()
-{
-
-}
-
 function distanceCal(hand){
     var sum = 0;
     var exp = hand.length;
@@ -177,11 +170,12 @@ audio.play = function () {
 
 
     frequency = sequencer[0][handMap];
-    console.log("circleeeeee calllll")
     myOscOutput = myFilt.lopass(myOsc.saw(frequency), myFiltOut);
     this.output = myOscOutput * myAmpOut;
 
 }
+
+
 
 
 

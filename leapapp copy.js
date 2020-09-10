@@ -8,5 +8,5 @@ var o = context.createOscillator()
 o.type="sine";
 o.frequency=440;
 o.connect(context.destination);
-//o.start();
+o.start();
 }
