@@ -59,7 +59,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
           case "circle":
-              console.log("Circle Gesture 1:23");
+              console.log("Circle Gesture 1:28");
               //audio.context.resume();
               console.log("my play function");
               context1 = new AudioContext()
@@ -68,7 +68,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
               o1.frequency.value=1000;
               o1.connect(context1.destination);
               o1.start();
-              stoppit();
+              o1.stop();
               
               break;
           case "keyTap":
