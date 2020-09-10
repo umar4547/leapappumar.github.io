@@ -177,7 +177,7 @@ audio.play = function () {
 
 
     frequency = sequencer[0][handMap];
-  
+    console.log("circleeeeee calllll")
     myOscOutput = myFilt.lopass(myOsc.saw(frequency), myFiltOut);
     this.output = myOscOutput * myAmpOut;
 
