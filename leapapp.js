@@ -53,13 +53,20 @@ var btnOpen = document.getElementById("btnOpen");
 var btnClose = document.getElementById("btnClose");
 
 var controller = Leap.loop({enableGestures: true}, function(frame){
-  if(frame.valid && frame.gestures.length > 0){
+  if(frame.valid && frame.gestures.length > 0)
+  {
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
           case "circle":
               console.log("Circle Gesture");
               //audio.context.resume();
-              //play();
+              console.log("my play function");
+              var context1 = new AudioContext()
+              var o1 = context1.createOscillator()
+              o1.type="sine";
+              o1.frequency=1000;
+              o1.connect(context1.destination);
+              o1.start();
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
@@ -168,7 +175,7 @@ function play ()
   var o1 = context1.createOscillator()
   o1.type="sine";
   o1.frequency=1000;
-  o1.connect(context.destination);
+  o1.connect(context1.destination);
   o1.start();
 }
 
