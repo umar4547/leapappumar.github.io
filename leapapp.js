@@ -52,13 +52,14 @@ function onConnect()
 var btnOpen = document.getElementById("btnOpen");
 var btnClose = document.getElementById("btnClose");
 
-var controller = Leap.loop({enableGestures: true}, function(frame){
+var controller = Leap.loop({enableGestures: true}, function(frame)
+{
   if(frame.valid && frame.gestures.length > 0)
   {
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
           case "circle":
-              console.log("Circle Gesture");
+              console.log("Circle Gesture 1:23");
               //audio.context.resume();
               console.log("my play function");
               context1 = new AudioContext()
@@ -67,11 +68,8 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
               o1.frequency.value=1000;
               o1.connect(context1.destination);
               o1.start();
-              setTimeout(function() {
-                
-                o1.stop();
-                console.log("sound stopped");
-              }, 1000);
+              stoppit();
+              
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
@@ -83,6 +81,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
               console.log("Swipe Gesture");
               break;
         }
+        
     });
   }
     //console.log(frame.gesture)
@@ -154,7 +153,10 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
       }
 
 });
-
+function stoppit()
+{
+  o1.stop();
+}
 
 function distanceCal(hand){
     var sum = 0;
