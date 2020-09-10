@@ -176,8 +176,8 @@ audio.play = function () {
     myFiltOut = filtEnv.adsr(1., filtEnv.trigger);
 
 
-    //frequency = sequencer[0][handMap];
-    frequency= "440"
+    frequency = sequencer[0][handMap];
+  
     myOscOutput = myFilt.lopass(myOsc.saw(frequency), myFiltOut);
     this.output = myOscOutput * myAmpOut;
 
