@@ -61,6 +61,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
         switch (gesture.type){
           case "circle":
               console.log("Circle Gesture");
+              audio.context.resume();
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
@@ -74,7 +75,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
         }
     });
   }
-  console.log(frame.gesture)
+    //console.log(frame.gesture)
     noteTrigger = false; // always set to off, until hand is over
     ampEnv.trigger = 0; //amplitude envelope
     filtEnv.trigger = 0; //filter envelope
@@ -108,7 +109,6 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
         //console.log(handMap);
 
         // var direction = hand.direction;
-        audio.context.resume();
         btnOpen;enableGestures: true    
 
         //console.log("Note On");
@@ -144,6 +144,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame){
       }
 
 });
+
 
 function distanceCal(hand){
     var sum = 0;
