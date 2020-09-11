@@ -149,7 +149,6 @@ function mapDist(num, in_min, in_max, out_min, out_max) {return (num - in_min) *
 
 function soundplay(counter)
 {
-  console.clear();
   console.log("counter value")
   console.log(counter); 
   seconds=counter/90;
@@ -172,7 +171,7 @@ function playNote(frequency, duration) {
     function() {
       oscillator.stop();
       playMelody();
-    }, seconds);
+    }, 2000);
 }
 
 function playMelody() {
