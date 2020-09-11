@@ -154,9 +154,9 @@ function soundplay(counter)
 {
   console.log("counter value below: ")
   console.log(counter); 
-  //seconds=counter/90;
+  seconds=counter/90;
   seconds=counter*1000;
-  console.log("milliseconds:");
+  console.log("play the sound for milliseconds:");
   console.log(seconds);
                
 var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
