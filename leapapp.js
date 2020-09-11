@@ -155,7 +155,7 @@ function soundplay(counter)
   console.log("counter value below: ")
   console.log(counter); 
   seconds=counter/90;
-  seconds=counter*1000;
+  seconds=seconds*1000;
   console.log("play the sound for milliseconds:");
   console.log(seconds);
                
