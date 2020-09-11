@@ -115,7 +115,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
         noteEvent = false;
         console.log("counter value here: ");
         console.log(counter);
-        soundplay(counter);
+          soundplay(counter);
         
       }
 
@@ -152,10 +152,10 @@ function mapDist(num, in_min, in_max, out_min, out_max) {return (num - in_min) *
 
 function soundplay(counter)
 {
-  console.log("counter value")
+  console.log("counter value below: ")
   console.log(counter); 
-  seconds=counter/90;
-  seconds=seconds*1000;
+  //seconds=counter/90;
+  seconds=counter*1000;
   console.log("milliseconds:");
   console.log(seconds);
                
