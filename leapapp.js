@@ -174,7 +174,7 @@ function playNote(frequency, duration) {
     function() {
       oscillator.stop();
       playMelody();
-    }, 2000);
+    }, seconds);
 }
 
 function playMelody() {
