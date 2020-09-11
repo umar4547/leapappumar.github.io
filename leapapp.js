@@ -113,7 +113,10 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
         //audio.context.suspend();
         console.log("Note Off");
         noteEvent = false;
-        soundplay();
+        console.log("counter value here: ");
+        console.log(counter);
+        soundplay(counter);
+        
       }
 
 
