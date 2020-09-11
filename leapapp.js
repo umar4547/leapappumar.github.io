@@ -1,3 +1,6 @@
+var counter=0;
+var seconds;
+console.log("10:01");
 var audio = new maximJs.maxiAudio();
 audio.init();
 var myOsc = new maximJs.maxiOsc();
@@ -16,26 +19,21 @@ var stateCount = 0; // stores count of each time the note on/off event occurs
 var noteTrigger; // to store the trigger state
 
 //Timing is in ms
-
 filtEnv.setAttack(2000);
 filtEnv.setDecay(1); // Needs to be at least 1
 filtEnv.setSustain(1.0);
 filtEnv.setRelease(5000);
-
 ampEnv.setAttack(100);
 ampEnv.setDecay(1); // Needs to be at least 1
 ampEnv.setSustain(1.0);
 ampEnv.setRelease(5000);
 var o1;
 //---------------- SYNTHESIS -----------------
-
 var controller = new Leap.Controller();
 var handData = controller.frame.hands;
 controller.connect();
-
 window.onload = function() { //loads the audio context
   var context = new AudioContext();
-
   // Setup all nodes
 }
 var sequencer = [
@@ -46,7 +44,7 @@ var sequencer = [
 controller.on('connect', onConnect);
 function onConnect()
   {
-    console.log("Connect event umffar ");
+    console.log("Connect event Wednesday");
 }
 
 var btnOpen = document.getElementById("btnOpen");
@@ -59,17 +57,9 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
     frame.gestures.forEach(function(gesture){
         switch (gesture.type){
           case "circle":
-              console.log("Circle Gesture 1:28");
+              console.log("Circle Gesture Wednesday");
               //audio.context.resume();
-              console.log("my play function");
-              context1 = new AudioContext()
-              o1 = context1.createOscillator()
-              o1.type="sine";
-              o1.frequency.value=1000;
-              o1.connect(context1.destination);
-              o1.start();
-              o1.stop();
-              
+              counter=counter+1;
               break;
           case "keyTap":
               console.log("Key Tap Gesture");
@@ -93,8 +83,6 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
     {
         var hand =      frame.hands[0];
         var position = hand.palmPosition;
-
-
         var maxRange = 10000; // maximum range
         var minRange = 190; // minimum range
         handDist = distanceCal(position); // return value representing 3d pos of hand array (distance from leap)
@@ -108,18 +96,13 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
             handDist = minRange; // delimit the low boundary
         }       
          handMap = mapDist(handDist, minRange, maxRange, 0, sequencer[0].length - 1);
-
          handMap = Math.round(handMap);
           if (handMap == NaN) {
                 handMap = 0;
               }
-
-
         //console.log(handMap);
-
         // var direction = hand.direction;
         btnOpen;enableGestures: true    
-
         //console.log("Note On");
         noteEvent = true;
 
@@ -130,6 +113,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
         //audio.context.suspend();
         console.log("Note Off");
         noteEvent = false;
+        soundplay();
       }
 
 
@@ -153,37 +137,60 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
       }
 
 });
-function stoppit()
-{
-  o1.stop();
-}
 
 function distanceCal(hand){
-    var sum = 0;
-    var exp = hand.length;
-
+    var sum = 0;var exp = hand.length;
     for(i=0; i < hand.length; i++){
-        sum += Math.pow(hand[i], exp);
+        sum += Math.pow(hand[i], exp);}   return Math.abs(Math.sqrt(sum));}
+
+function mapDist(num, in_min, in_max, out_min, out_max) {return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;}
 
 
-    }
-        return Math.abs(Math.sqrt(sum));
-}
 
-function mapDist(num, in_min, in_max, out_min, out_max) {
-  return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
-function play ()
+function soundplay(counter)
 {
+  console.clear();
+  console.log("counter value")
+  console.log(counter); 
+  seconds=counter/90;
+  seconds=seconds*1000;
+  console.log("milliseconds:");
+  console.log(seconds);
+               
+var audioCtx = new(window.AudioContext || window.webkitAudioContext)();
 
-  console.log("my play function");
-  var context1 = new AudioContext()
-  var o1 = context1.createOscillator()
-  o1.type="sine";
-  o1.frequency=1000;
-  o1.connect(context1.destination);
-  o1.start();
+function playNote(frequency, duration) {
+  // create Oscillator node
+  var oscillator = audioCtx.createOscillator();
+
+  oscillator.type = 'square';
+  oscillator.frequency.value = frequency; // value in hertz
+  oscillator.connect(audioCtx.destination);
+  oscillator.start();
+
+  setTimeout(
+    function() {
+      oscillator.stop();
+      playMelody();
+    }, seconds);
+}
+
+function playMelody() {
+  if (notes.length > 0) {
+    note = notes.pop();
+    playNote(note[0], 1000 * 256 / (note[1] * tempo));
+  }
+}
+
+notes = [
+  
+  [440, 2]
+];
+
+notes.reverse();
+tempo = 100;
+
+playMelody();
 }
 
 audio.play = function () {
