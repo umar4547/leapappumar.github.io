@@ -49,7 +49,8 @@ function onConnect()
 
 var btnOpen = document.getElementById("btnOpen");
 var btnClose = document.getElementById("btnClose");
-
+function record()
+{
 var controller = Leap.loop({enableGestures: true}, function(frame)
 {
   if(frame.valid && frame.gestures.length > 0)
@@ -107,7 +108,8 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
         noteEvent = true;
 
 
-      }else{
+      }
+      else{
 
         btnClose;
         //audio.context.suspend();
@@ -115,7 +117,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
         noteEvent = false;
         console.log("counter value here: ");
         console.log(counter);
-          soundplay(counter);
+        //soundplay(counter);
         
       }
 
@@ -140,6 +142,7 @@ var controller = Leap.loop({enableGestures: true}, function(frame)
       }
 
 });
+}//func record
 
 function distanceCal(hand){
     var sum = 0;var exp = hand.length;
@@ -150,7 +153,7 @@ function mapDist(num, in_min, in_max, out_min, out_max) {return (num - in_min) *
 
 
 
-function soundplay(counter)
+function soundplay()
 {
   console.log("counter value below: ")
   console.log(counter); 
